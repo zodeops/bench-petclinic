@@ -4,15 +4,16 @@
 name: Java CI with Maven
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      runner:
+        description: runs-on label for every job
+        default: ubuntu-latest
 
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runner }}
     strategy:
       matrix:
         java: [ '17' ]
